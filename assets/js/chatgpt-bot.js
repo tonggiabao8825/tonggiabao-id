@@ -517,7 +517,7 @@ class ResponsiveManager {
 
 // ===== Initialize App =====
 function initializeApp() {
-    console.log('🚀 Initializing BaroDev AI Assistant...');
+    console.log('Initializing BaroDev AI Assistant...');
     
     // Set initial mode
     UIManager.updateModeButtons(state.currentMode);
