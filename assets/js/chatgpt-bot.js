@@ -1,6 +1,6 @@
 // ===== Configuration =====
 const CONFIG = {
-    API_URL: 'https://chatbotcv-backend-2.onrender.com', // Thay đổi URL khi deploy
+    API_URL: 'https://chatbotcv-backend-2.onrender.com/', // Thay đổi URL khi deploy
     SESSION_STORAGE_KEY: 'chatbot_session',
     THEME_STORAGE_KEY: 'chatbot_theme',
     CHAT_MODE_STORAGE_KEY: 'chatbot_mode'
@@ -247,7 +247,7 @@ class UIManager {
 class APIManager {
     static async sendMessage(message, mode, sessionId, conversationHistory) {
         try {
-            const response = await fetch(`${CONFIG.API_URL}/chat`, {
+            const response = await fetch(`${CONFIG.API_URL}chat`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -274,7 +274,7 @@ class APIManager {
 
     static async getSuggestions(currentQuestion, mode) {
         try {
-            const response = await fetch(`${CONFIG.API_URL}/suggestions`, {
+            const response = await fetch(`${CONFIG.API_URL}suggestions`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -299,7 +299,7 @@ class APIManager {
 
     static async clearSession(sessionId) {
         try {
-            await fetch(`${CONFIG.API_URL}/clear-session`, {
+            await fetch(`${CONFIG.API_URL}clear-session`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
