@@ -1,6 +1,6 @@
 // ===== Configuration =====
 const CONFIG = {
-    API_URL: 'http://localhost:8000', // Thay đổi URL khi deploy
+    API_URL: 'https://chatbotcv-backend-2.onrender.com/chat', // Thay đổi URL khi deploy
     SESSION_STORAGE_KEY: 'chatbot_session',
     THEME_STORAGE_KEY: 'chatbot_theme',
     CHAT_MODE_STORAGE_KEY: 'chatbot_mode'
@@ -184,7 +184,7 @@ class UIManager {
 
         elements.suggestionsContainer.style.display = 'block';
         elements.suggestionsContainer.innerHTML = `
-            <div class="suggestions-title">💡 Câu hỏi gợi ý:</div>
+            <div class="suggestions-title"> Câu hỏi gợi ý:</div>
             <div class="suggestions-grid" id="suggestionsGrid">
                 ${suggestions.map(s => `
                     <button class="suggestion-btn" data-suggestion="${this.escapeHtml(s)}">

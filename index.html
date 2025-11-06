@@ -7,11 +7,14 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>BaroDev AI Assistant</title>
-    <link rel="stylesheet" href="../assets/css/chatgpt-style.css">
+    <title>TongGiaBao-Site</title>
+    <link rel="stylesheet" href="./assets/css/chatgpt-style.css">
+    <link rel="stylesheet" href="./assets/css/space.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body data-theme="dark">
+    <!-- Starfield background canvas -->
+    <canvas id="starfield-canvas" aria-hidden="true"></canvas>
     <!-- Sidebar Overlay for Mobile -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
     
@@ -57,7 +60,7 @@
                 </div>
 
                 <div class="profile-bio">
-                    <p><i class="fas fa-quote-left"></i> Đam mê xây dựng AI virtual assistant giống Jarvis. Fan của Tony Stark và Spider-Man! <i class="fas fa-quote-right"></i></p>
+                    <p><i class="fas fa-quote-left"></i>A winner never stops trying.<i class="fas fa-quote-right"></i></p>
                 </div>
 
                 <div class="profile-social">
@@ -89,8 +92,8 @@
         <div class="sidebar-footer">
             <div class="footer-info">
                 <div class="footer-text">
-                    <i class="fas fa-robot"></i>
-                    <span>Powered by Jarvis AI</span>
+                    <i class="fas human"></i>
+                    <span>Developped by BaroDev</span>
                 </div>
                 <div class="footer-version">v1.0.0</div>
             </div>
@@ -135,32 +138,17 @@
                     <div class="mode-cards">
                         <div class="mode-card">
                             <i class="fas fa-briefcase"></i>
-                            <h3>CV Mode</h3>
-                            <p>Tìm hiểu về kinh nghiệm làm việc, kỹ năng, học vấn và dự án chuyên nghiệp</p>
+                            <h3>Chat with Jarvis</h3>
+                            <p>Jarvis will provide you BaroDev's career and his journey.</p>
                         </div>
                         <div class="mode-card">
                             <i class="fas fa-user-friends"></i>
-                            <h3>Human Chat</h3>
-                            <p>Trò chuyện về gia đình, bạn bè, tình yêu và cuộc sống cá nhân</p>
+                            <h3>Chat with himself</h3>
+                            <p>TongGiaBao 's digital twin, you are help him to finish building his Knowledgraph base on his life</p>
                         </div>
                     </div>
 
                     <div class="example-questions">
-                        <h3>Câu hỏi gợi ý:</h3>
-                        <div class="example-grid">
-                            <button class="example-btn" data-question="Bạn có kinh nghiệm gì về AI?">
-                                "Bạn có kinh nghiệm gì về AI?"
-                            </button>
-                            <button class="example-btn" data-question="Học vấn của bạn như thế nào?">
-                                "Học vấn của bạn như thế nào?"
-                            </button>
-                            <button class="example-btn" data-question="Bạn làm việc với công nghệ nào?">
-                                "Bạn làm việc với công nghệ nào?"
-                            </button>
-                            <button class="example-btn" data-question="Dự án nổi bật của bạn là gì?">
-                                "Dự án nổi bật của bạn là gì?"
-                            </button>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -181,7 +169,7 @@
             <div class="input-wrapper">
                 <textarea 
                     id="messageInput" 
-                    placeholder="Nhắn tin cho Jarvis..."
+                    placeholder="..."
                     rows="1"
                 ></textarea>
                 <button class="send-btn" id="sendBtn">
@@ -189,11 +177,12 @@
                 </button>
             </div>
             <div class="input-footer">
-                <small>Jarvis có thể mắc lỗi. Hãy kiểm tra thông tin quan trọng.</small>
+                <small>Trò chuyện với tôi để giúp tôi hoàn thiện hơn bộ dữ liệu về cuộc đời tôi</small>
             </div>
         </div>
     </main>
 
+    <script src="./assets/js/starfield.js" defer></script>
     <script src="../assets/js/chatgpt-bot.js"></script>
 </body>
 </html>

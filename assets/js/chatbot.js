@@ -102,7 +102,7 @@ async function sendmessage() {
     catch(e) {
         typingIndicator.style.display = "none";
         const { messageDiv, paragraph } = addMessage("bot-message", "");
-        await streamText(paragraph, `❌ Unable to connect to server! ${e.message}`);
+        await streamText(paragraph, ` Unable to connect to server! ${e.message}`);
     }
     finally {
         // Re-enable send button
