@@ -1,6 +1,6 @@
 // ===== Configuration =====
 const CONFIG = {
-    API_URL: 'https://chatbotcv-backend-2.onrender.com/', // Thay đổi URL khi deploy
+    API_URL: 'https://chatbotcv-backend-2.onrender.com', // Thay đổi URL khi deploy
     SESSION_STORAGE_KEY: 'chatbot_session',
     THEME_STORAGE_KEY: 'chatbot_theme',
     CHAT_MODE_STORAGE_KEY: 'chatbot_mode'
