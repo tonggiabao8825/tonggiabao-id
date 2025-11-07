@@ -1,6 +1,7 @@
 // ===== Configuration =====
 const CONFIG = {
-    API_URL: 'https://chatbotcv-backend-2.onrender.com/', // Thay đổi URL khi deploy
+    // API_URL: 'https://chatbotcv-backend-2.onrender.com/', // Thay đổi URL khi deploy
+    API_URL:'http://127.0.0.1:8000/',
     SESSION_STORAGE_KEY: 'chatbot_session',
     THEME_STORAGE_KEY: 'chatbot_theme',
     CHAT_MODE_STORAGE_KEY: 'chatbot_mode'
@@ -144,6 +145,11 @@ class UIManager {
         const messageDiv = document.createElement('div');
         messageDiv.className = `message ${role}`;
         
+        // Add bubble-float animation for user messages
+        if (role === 'user') {
+            messageDiv.classList.add('bubble-float');
+        }
+        
         const avatar = role === 'user' 
             ? '<i class="fas fa-user"></i>' 
             : '<i class="fas fa-robot"></i>';
@@ -182,12 +188,16 @@ class UIManager {
             return;
         }
 
+        // Limit suggestions on mobile for better UX
+        const maxSuggestions = ResponsiveManager.isMobile() ? 3 : 5;
+        const displayedSuggestions = suggestions.slice(0, maxSuggestions);
+
         elements.suggestionsContainer.style.display = 'block';
         elements.suggestionsContainer.innerHTML = `
-            <div class="suggestions-title"> Câu hỏi gợi ý:</div>
+            <div class="suggestions-title">Câu hỏi gợi ý:</div>
             <div class="suggestions-grid" id="suggestionsGrid">
-                ${suggestions.map(s => `
-                    <button class="suggestion-btn" data-suggestion="${this.escapeHtml(s)}">
+                ${displayedSuggestions.map(s => `
+                    <button class="suggestion-btn" data-suggestion="${this.escapeHtml(s)}" title="${this.escapeHtml(s)}">
                         ${this.escapeHtml(s)}
                     </button>
                 `).join('')}
@@ -202,11 +212,16 @@ class UIManager {
             });
         });
 
-        // Add swipe hint for mobile
+        // Smooth scroll behavior for mobile
         if (ResponsiveManager.isMobile()) {
             const grid = document.getElementById('suggestionsGrid');
-            if (grid && grid.scrollWidth > grid.clientWidth) {
-                grid.style.position = 'relative';
+            if (grid) {
+                // Enable momentum scrolling
+                grid.style.webkitOverflowScrolling = 'touch';
+                // Scroll suggestions into view smoothly
+                setTimeout(() => {
+                    grid.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }, 100);
             }
         }
     }
@@ -323,6 +338,15 @@ class ChatManager {
         UIManager.showMessages();
         UIManager.hideSuggestions();
         UIManager.disableInput();
+
+        // Add sending animation to input wrapper
+        const inputWrapper = document.querySelector('.input-wrapper');
+        if (inputWrapper) {
+            inputWrapper.classList.add('sending');
+            setTimeout(() => {
+                inputWrapper.classList.remove('sending');
+            }, 300);
+        }
 
         // Add user message to UI
         UIManager.addMessage('user', message);
@@ -457,6 +481,17 @@ function initializeEventListeners() {
         }
     });
 
+    // Mobile keyboard handling - scroll to bottom when input focused
+    if (ResponsiveManager.isMobile()) {
+        elements.messageInput.addEventListener('focus', () => {
+            setTimeout(() => {
+                UIManager.scrollToBottom();
+                // Scroll input into view
+                elements.messageInput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 300); // Wait for keyboard animation
+        });
+    }
+
     // Close sidebar on mobile when clicking outside (handled by overlay now)
     // Removed duplicate logic as we now use overlay
 }
@@ -503,15 +538,37 @@ class ResponsiveManager {
             }, 300);
         });
 
-        // Prevent zoom on double tap for better UX
-        let lastTouchEnd = 0;
-        document.addEventListener('touchend', (e) => {
-            const now = Date.now();
-            if (now - lastTouchEnd <= 300) {
-                e.preventDefault();
-            }
-            lastTouchEnd = now;
-        }, false);
+        // Mobile-specific optimizations
+        if (this.isMobile()) {
+            // Prevent zoom on double tap for better UX
+            let lastTouchEnd = 0;
+            document.addEventListener('touchend', (e) => {
+                const now = Date.now();
+                if (now - lastTouchEnd <= 300) {
+                    e.preventDefault();
+                }
+                lastTouchEnd = now;
+            }, false);
+
+            // Handle viewport height changes (keyboard opening/closing)
+            let lastHeight = window.innerHeight;
+            window.visualViewport?.addEventListener('resize', () => {
+                const currentHeight = window.visualViewport.height;
+                const diff = lastHeight - currentHeight;
+                
+                // Keyboard is opening
+                if (diff > 150) {
+                    setTimeout(() => {
+                        UIManager.scrollToBottom();
+                    }, 100);
+                }
+                lastHeight = currentHeight;
+            });
+
+            // Prevent body scroll when chat is scrolling
+            document.body.style.position = 'fixed';
+            document.body.style.width = '100%';
+        }
     }
 }
 
