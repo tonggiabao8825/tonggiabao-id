@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NeoChat AI</title>
+  <title>TongGiaBao-Official Plattform</title>
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css" />
@@ -17,8 +17,8 @@
     <div class="app-container">
       <div class="sidebar" id="sidebar">
         <div class="logo">
-          <i class="fas fa-robot"></i>
-          <span>NeoChat</span>
+          <img src="assets/images/old_image_elevator.png" alt="avatar">
+          <span>TongGiaBao -Official Chat Plattform</span>
         </div>
         <button id="new-chat" class="new-chat-btn">
           <i class="fas fa-plus"></i>
@@ -71,7 +71,7 @@
             <button id="regenerate-response" title="Regenerate response">
               <i class="fas fa-sync"></i>
             </button>
-            <button id="stop-response" title="Stop generating">
+            <button id="stop-response" title="Stop response">
               <i class="fas fa-stop"></i>
             </button>
             <button id="export-chat" title="Export conversation">
@@ -81,26 +81,20 @@
         </div>
         <div class="messages" id="messages">
           <div class="intro-message">
-            <h1>Welcome to NeoChat AI</h1>
-            <p>Ask me anything. I'm powered by deepseek-r1.</p>
-            <div class="suggestion-chips">
-              <button class="suggestion-chip">Tell me a story</button>
-              <button class="suggestion-chip">
-                Explain quantum computing
-              </button>
-              <button class="suggestion-chip">Write a poem</button>
-              <button class="suggestion-chip">
-                Help me learn JavaScript
-              </button>
-            </div>
+            <h1>Hello guys,</h1>
+          <p>Mình có một tên miền cá nhân chưa dùng đến, mình thấy khá phí nên muốn làm một thứ gì đó thật cá nhân nên mình quyết định build nên trang web này.</p>
+          <p>Mình có hai chế độ chat: </p>
+          <br>
+          <p>-Trò chuyện với trợ lý của tôi( CV ASK)</p><br>
+          <p>-Trò chuyện với tôi phiên bản trùng sinh( DIGITAL TWIN )</p>
+          <br>
+          <p>Với chế độ Digital twin, về cơ bản tôi đang cố gắng xây dựng một phiên bản số của tôi( ở mức độ những gì một thằng sinh viên có thể làm ). Mặc dù biết mức độ khả thi không được cao, nhưng tôi xem như đây là một trải nghiệm mới và một mục tiêu mà tôi ấp ủ khá lâu( fan cuồng của IronMan mà :v) <br>
+              Anyway thì còn khá nhiều thiếu sót về lượng thông tin được lưu trữ, hi vọng việc bỏ ôn thi để build project này là xứng đáng =)) ) 
+
           </div>
         </div>
         <div class="input-area">
           <div class="input-container">
-            <button id="file-upload-button" title="Upload File">
-              <i class="fas fa-paperclip"></i>
-            </button>
-            <input type="file" id="file-upload" title="Select file to upload" />
             <textarea id="user-input" placeholder="Type your message here..." rows="1"></textarea>
             <button id="send-button" title="Send message">
               <i class="fas fa-paper-plane"></i>
@@ -109,8 +103,7 @@
           <!-- Pending file preview container -->
           <div id="pending-file-preview"></div>
           <div class="disclaimer">
-            NeoChat may produce inaccurate information. Messages are stored
-            locally.
+            Trò chuyện với tôi là giúp tôi hoàn thiện hơn về bô dữ liệu của cá nhân tôi.
           </div>
         </div>
       </div>
