@@ -1,5 +1,5 @@
 const CONFIG = {
-    API_URL: 'http://127.0.0.1:8000/',
+    API_URL: 'https://chatbotcv-backend-2.onrender.com/',
     SESSION_STORAGE_KEY: 'chatbot_session',
     THEME_STORAGE_KEY: 'chatbot_theme',
     CHAT_HISTORY_KEY: 'chatbot_chat_history',
